@@ -1,23 +1,25 @@
 # Loginpage Hotspot
 
-Repository ini berisi template halaman login hotspot/captive portal yang bisa digunakan untuk kebutuhan login user pada jaringan Wi-Fi berbasis MikroTik Hotspot. Terdapat beberapa varian desain yang siap digunakan sebagai halaman login, status, error, voucher, FAQ, dan halaman pendukung lainnya.
+Template halaman login hotspot yang dibuat untuk kebutuhan autentikasi pengguna pada jaringan Wi-Fi atau captive portal. Repository ini berisi beberapa varian desain login hotspot yang dapat digunakan untuk MikroTik Hotspot, Wi-Fi publik, dan jaringan internet berbasis portal login.
 
-## Fitur utama
+## Tentang Project
 
-- Halaman login user hotspot
-- Halaman status koneksi
-- Halaman logout
-- Halaman error / not found / invalid / kuota / expired
-- Template voucher dan FAQ
-- Desain responsive dengan HTML, CSS, dan JavaScript
-- Tersedia beberapa versi tema, seperti `Purple_V1` dan `premium-v4`
+Project ini menyediakan halaman login yang umum dipakai untuk:
 
-## Struktur repository
+- autentikasi pengguna hotspot
+- menampilkan informasi status koneksi
+- menampilkan halaman error, redirect, dan logout
+- menyediakan FAQ, layanan, voucher, dan aktivasi
+- memberikan beberapa variasi desain yang dapat disesuaikan
+
+## Struktur Repository
 
 ```text
 Loginpage-Hotspot/
 ├── LICENSE
+├── README.md
 ├── Purple_V1/
+│   ├── README.md
 │   ├── login.html
 │   ├── status.html
 │   ├── logout.html
@@ -28,75 +30,69 @@ Loginpage-Hotspot/
 │   ├── api.json
 │   └── assets/
 ├── premium-v4/
+│   ├── README.md
 │   ├── login.html
 │   ├── status.html
-│   ├── voucher.html
+│   ├── logout.html
 │   ├── faq.html
 │   ├── layanan.html
 │   ├── aktivasi.html
+│   ├── voucher.html
 │   ├── redirect.html
 │   ├── css/
 │   ├── js/
 │   ├── img/
 │   └── fonts/
-└── README.md
+└── LICENSE
 ```
 
-## Versi yang tersedia
+## Varian yang Tersedia
 
-### 1. Purple_V1
-Versi awal dengan tampilan sederhana dan fokus pada fungsi login hotspot.
+### Purple_V1
+Versi awal dan sederhana, cocok untuk kebutuhan dasar halaman login hotspot. Mudah dimodifikasi dan ringan.
 
-### 2. premium-v4
-Versi yang lebih lengkap dan lebih modern, dengan beberapa halaman pendukung seperti login, voucher, layanan, FAQ, dan status.
+### premium-v4
+Versi yang lebih modern dan lebih lengkap, dengan beberapa halaman pendukung seperti login, status, voucher, layanan, FAQ, dan aktivasi.
+
+## Fitur Utama
+
+- form login hotspot
+- halaman status pengguna
+- halaman logout
+- halaman redirect dan error
+- voucher, FAQ, dan layanan
+- layout HTML, CSS, JS yang mudah dikustomisasi
+- dapat dipakai sebagai template portal login Wi-Fi
 
 ## Persyaratan
 
-- Server web yang dapat diakses oleh client hotspot
-- Router MikroTik dengan fitur Hotspot aktif
-- File HTML/CSS/JS yang digunakan harus ditempatkan di direktori hotspot yang benar pada router atau web server yang dipakai
-- Browser modern untuk menampilkan halaman login
+- Server web atau direktori publik yang bisa diakses client
+- Router MikroTik dengan fitur hotspot aktif
+- Browser modern untuk menampilkan halaman portal login
+- Konfigurasi hotspot yang mengarah ke template HTML ini
 
-## Cara penggunaan
+## Cara Penggunaan
 
-1. Pilih salah satu desain yang ingin dipakai, misalnya `Purple_V1` atau `premium-v4`.
-2. Copy seluruh isi folder tersebut ke folder hotspot yang sesuai di server/router Anda.
-3. Pastikan konfigurasi MikroTik Hotspot mengarah ke halaman login yang benar.
-4. Sesuaikan isi form, teks, logo, dan parameter jaringan sesuai kebutuhan.
-5. Uji akses di client, lalu lakukan login menggunakan akun hotspot yang tersedia.
+1. Pilih versi template yang ingin dipakai (`Purple_V1` atau `premium-v4`).
+2. Copy folder template ke lokasi web yang sesuai.
+3. Sesuaikan teks, logo, warna, dan struktur halaman sesuai kebutuhan.
+4. Konfigurasikan MikroTik Hotspot agar halaman login mengarah ke file yang benar.
+5. Uji koneksi dari client dan pastikan proses login/redirect berjalan dengan baik.
 
-## Konfigurasi umum
+## Catatan Penting
 
-Beberapa file template biasanya berhubungan dengan parameter seperti:
-
-- `login.html` = halaman utama login
-- `status.html` = halaman status pengguna
-- `logout.html` = halaman logout
-- `redirect.html` = redirect setelah autentikasi
-- `error.html` = halaman kesalahan
-- `faq.html` / `help.html` = bantuan dan informasi
-
-Jika Anda memakai router MikroTik, pastikan halaman HTML tersebut sesuai dengan konfigurasi `hotspot` dan `walled-garden` yang aktif pada jaringan Anda.
-
-## Catatan penting
-
-- Template ini umumnya dibuat untuk kebutuhan portal login Wi-Fi/hotspot dan dapat dimodifikasi sesuai kebutuhan branding Anda.
-- Disarankan untuk mengecek script JavaScript dan parameter URL sebelum digunakan pada lingkungan produksi.
-- Gunakan akun dan autentikasi hotspot sesuai kebijakan jaringan Anda.
+- Template ini dibuat untuk kebutuhan portal login Wi-Fi/hotspot.
+- Sebelum dipakai di production, pastikan URL, parameter, dan script sudah disesuaikan dengan jaringan Anda.
+- Gunakan autentikasi dan pengelolaan akses sesuai kebijakan internal jaringan.
 
 ## Lisensi
 
-Proyek ini dilindungi oleh lisensi yang terdapat pada file `LICENSE` dalam repository ini.
+Proyek ini menggunakan lisensi yang ada di file `LICENSE` pada repository ini.
 
-## Tentang fork
+## Fork & Pengembangan
 
-Repositori ini merupakan fork dari template login hotspot yang kemudian dapat disesuaikan, dipelajari, dan dikembangkan lebih lanjut sesuai kebutuhan proyek Anda.
+Repository ini merupakan fork dari template login hotspot yang dapat ditingkatkan, dimodifikasi, dan disesuaikan untuk kebutuhan branding atau integrasi jaringan.
 
 ---
 
-Jika Anda mau, saya juga bisa bantu membuatkan:
-
-- README versi lebih formal untuk GitHub
-- README versi singkat untuk portfolio
-- Versi README dalam bahasa Inggris
-- Deskripsi project yang lebih profesional untuk publikasi di GitHub
+Silakan lihat folder `Purple_V1` dan `premium-v4` untuk masing-masing versi template yang lebih spesifik.
