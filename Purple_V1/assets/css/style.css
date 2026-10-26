@@ -1,0 +1,998 @@
+/* ============================================================
+   PlanNet Hotspot - Complete Stylesheet
+   Digabung, Dioptimalkan & Diberi Efek Buku pada Nav Mobile
+   Juli 2025
+   ============================================================ */
+
+/* ---------- 1. Font Face ---------- */
+@font-face {
+    font-family: "Outfit";
+    src: url("../fonts/Outfit-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("../fonts/Outfit-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("../fonts/Outfit-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("../fonts/Outfit-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("../fonts/Outfit-ExtraBold.woff") format("woff");
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* ---------- 2. Variabel Global ---------- */
+:root {
+    --primary: #6c5ce7;
+    --primary-dark: #5a4bd1;
+    --secondary: #6c6c8a;
+    --info: #dae0fa;
+    --text-dark: #2b2b53;
+    --text-muted: #5a5a7a;
+    --text-danger: #e74c3c;
+    --text-white: rgba(255,255,255,0.9);
+    --warning: #f59e0b;
+    --surface-glass: rgba(255, 255, 255, 0.55);
+    --border-glass: rgba(255, 255, 255, 0.747);
+    --active: rgba(108, 92, 231, 0.08);
+    --hover: rgba(74, 116, 155, 0.836);
+    --radius-xl: 22px;
+    --radius-lg: 16px;
+    --transition: 0.2s ease;
+}
+
+/* ---------- 3. Reset & Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 20% 50%, #dfe6fd 0%, #dee4f7 40%, #b8c6ff 100%);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* ---------- 4. Background Orbs ---------- */
+.bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+.orb-1 {
+    width: 40vw;
+    height: 40vw;
+    background: rgba(108, 92, 231, 0.15);
+    top: -10%;
+    left: -5%;
+}
+.orb-2 {
+    width: 35vw;
+    height: 35vw;
+    background: rgba(162, 155, 254, 0.15);
+    bottom: -10%;
+    right: -5%;
+}
+.orb-3 {
+    width: 25vw;
+    height: 25vw;
+    background: rgba(253, 203, 110, 0.1);
+    top: 60%;
+    left: 70%;
+}
+
+/* ---------- 5. Navbar ---------- */
+.navbar {
+    background: var(--surface-glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 0.7rem 1.5rem;
+    z-index: 1030;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+.nav-link {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover {
+    color: var(--secondary);
+    background: var(--active);
+}
+.nav-link.active {
+    color: var(--primary);
+    background: var(--active);
+}
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+/* ---------- 6. Footer ---------- */
+.footer-text {
+    text-align: center;
+    padding: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--secondary);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    margin-top: auto;
+    z-index: 2;
+    position: relative;
+}
+
+/* ---------- 7. Utility ---------- */
+.d-none { display: none; }
+.svg-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+    vertical-align: middle;
+}
+.svg-icon-lg { width: 2rem; height: 2rem; }
+.svg-icon-xl { width: 5rem; height: 5rem; }
+
+/* ---------- 8. Main Wrapper & Login Card ---------- */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1.5rem 1rem;
+    position: relative;
+    z-index: 2;
+    gap: 1.5rem;
+}
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 8px 20px rgba(108,92,231,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.login-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.08), 0 10px 25px rgba(108,92,231,0.15);
+}
+.card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    padding: 1.8rem 1.8rem 1.5rem;
+}
+.card-header h1 {
+    color: var(--text-white);
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0;
+    text-align: left;
+}
+.card-header h2 {
+    color: var(--text-white);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0;
+    text-align: left;
+}
+
+/* ---------- 9. Tab & Form ---------- */
+.tab-nav {
+    display: flex;
+    background: var(--surface-glass);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-glass);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.7rem 0.3rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    user-select: none;
+    transition: all 0.2s;
+}
+.tab-item.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--active);
+}
+.form-body {
+    padding: 1.2rem 1.8rem 1.5rem;
+    background: var(--surface-glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+.alert-custom {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+.alert-info {
+    background: var(--info);
+    color: var(--text-muted);
+}
+.alert-danger {
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    color: var(--text-danger);
+}
+.input-group-custom {
+    position: relative;
+    margin-bottom: 1rem;
+}
+.input-group-custom input {
+    width: 100%;
+    height: 2.9rem;
+    border-radius: 14px;
+    border: 2px solid rgba(108,92,231,0.15);
+    background: rgba(255,255,255,0.75);
+    padding-left: 2.8rem;
+    padding-right: 2.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    outline: none;
+    font-family: inherit;
+}
+.input-group-custom input:focus {
+    border-color: var(--primary);
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 4px rgba(108,92,231,0.08);
+}
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0a0c0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+.input-group-custom input:focus ~ .input-icon {
+    color: var(--primary);
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #a0a0c0;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 8px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+}
+.toggle-password:hover {
+    color: var(--primary);
+}
+
+/* ---------- 10. Buttons & Links ---------- */
+.btn-connect {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-white);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 18px rgba(108,92,231,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    position: relative;
+    overflow: hidden;
+}
+.btn-connect:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+    box-shadow: 0 10px 22px rgba(108,92,231,0.4);
+    transform: translateY(-1px);
+}
+.btn-connect:active {
+    transform: translateY(0) scale(0.98);
+}
+.btn-connect:disabled {
+    opacity: 0.7;
+    transform: none;
+    cursor: not-allowed;
+}
+.btn-logout {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-white);
+    background: var(--text-danger);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 18px rgba(231,76,60,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-logout:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+}
+.btn-login {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-white);
+    background: var(--primary);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 18px rgba(108,92,231,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-login:hover {
+    background: var(--hover);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(108,92,231,0.4);
+}
+.btn-login:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--border-glass);
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    pointer-events: none;
+}
+
+.status-indicator {
+    position: relative;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+    background: #00e053;
+}
+
+.status-indicator::before,
+.status-indicator::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(30, 248, 175, 0.856);
+    animation: ping 3s infinite;
+}
+
+.status-indicator::after {
+    animation-delay: 3s;
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
+}
+
+.status-text {
+    text-align: right;
+    font-size: 0.7rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.disable {
+    opacity: 0.4;
+    pointer-events: none;
+    color: var(--text-muted);
+}
+.forget {
+    text-align: right;
+    margin-top: -0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+}
+.forget a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+.forget a:hover {
+    text-decoration: underline;
+    color: var(--text-dark);
+}
+.link-bottom {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+.link-bottom a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+.link-bottom a:hover {
+    text-decoration: underline;
+    color: var(--text-dark);
+}
+
+
+/* ---------- 11. Package Cards (Grid 3 kolom) ---------- */
+.package-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 720px;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.package-card {
+    position: relative;
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 18px;
+    padding: 0.9rem 0.8rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+    overflow: hidden;
+}
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px var(--hover);
+}
+/* Ribbon "HOT" */
+.package-card::before {
+    content: "HOT";
+    position: absolute;
+    top: 8px;
+    right: -25px;
+    background: var(--text-danger);
+    color: var(--text-white);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.2rem 2rem;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+.package-card.no-ribbon::before {
+    display: none;
+}
+.package-card .pkg-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.package-card .pkg-header .pkg-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+.package-card .pkg-header .pkg-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+.package-card .pkg-speed {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.1;
+    text-align: center;
+}
+.package-card .pkg-speed small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+.package-card .pkg-price {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--active);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    align-self: flex-start;
+}
+.package-card .pkg-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+/* ---------- 12. Status / Logout / Advert Grid Cards ---------- */
+.status-grid,
+.logout-grid,
+.advert-grid {
+    width: 100%;
+    max-width: 700px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.status-card-item,
+.logout-card-item,
+.advert-card-item {
+    background: var(--surface-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+.status-card-item:hover,
+.logout-card-item:hover,
+.advert-card-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(108,92,231,0.1);
+}
+.advert-card-item:hover {
+    box-shadow: 0 12px 24px rgba(245,158,11,0.12);
+}
+.status-card-icon,
+.logout-card-icon,
+.advert-card-icon {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    color: var(--primary);
+}
+.advert-card-icon {
+    color: var(--warning);
+}
+.status-card-label,
+.logout-card-label,
+.advert-card-label {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.status-card-value,
+.logout-card-value,
+.advert-card-value {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dark);
+    word-break: break-word;
+    line-height: 1.3;
+}
+.status-card-value small,
+.logout-card-value small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Status & Logout Wrapper (halaman khusus) */
+.status-wrapper,
+.logout-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1.5rem 2rem;
+    position: relative;
+    z-index: 2;
+    gap: 2rem;
+}
+.status-header,
+.logout-header {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    color: var(--text-dark);
+}
+.status-header h1,
+.logout-header h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+.status-header p,
+.logout-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+}
+.status-logout,
+.logout-action {
+    margin-top: 0.5rem;
+}
+
+/* ---------- 13. FAQ ---------- */
+.faq-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 1.5rem 2rem;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+.faq-container {
+    width: 100%;
+    max-width: 720px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 22px;
+    padding: 2rem 2rem 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(108, 92, 231, 0.1);
+}
+.faq-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+.faq-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.faq-item {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.faq-item.active {
+    box-shadow: 0 6px 16px var(--active);
+}
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: color 0.2s;
+    text-align: left;
+}
+.faq-question:hover {
+    color: var(--primary);
+}
+.faq-question .faq-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+.faq-item.active .faq-question .faq-icon {
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 0 1.2rem 1rem;
+}
+.faq-answer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ---------- 14. Loading Overlay ---------- */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.loading.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(108, 92, 231, 0.15);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+.spinner-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    animation: spin 1s linear infinite;
+}
+
+/* ---------- 15. Keyframes ---------- */
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- 16. Media Queries (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;                     /* putih polos */
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 0;                           /* padding diatur pada item */
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Garis tipis di setiap li */
+    .nav-links li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #e0e0e0;    /* garis tipis seperti <hr> */
+    }
+
+    /* Hapus garis di item terakhir (opsional, supaya tidak double di bawah) */
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        display: block;
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.75rem 1.2rem;
+        background: transparent;
+        transition: background 0.2s;
+    }
+
+    .nav-links a:hover {
+        background: rgba(0, 0, 0, 0.03);
+    }
+}
+
+/* ---------- 17. Media Queries (max-width: 550px) ---------- */
+@media (max-width: 550px) {
+    .package-section {
+        gap: 0.5rem;
+    }
+    .package-card {
+        padding: 0.7rem 0.5rem 0.6rem;
+        border-radius: 14px;
+    }
+    .package-card .pkg-header {
+        gap: 0.3rem;
+    }
+    .package-card .pkg-header .pkg-icon {
+        padding: 0.2rem;
+        border-radius: 6px;
+    }
+    .package-card .pkg-header .pkg-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    .package-card .pkg-header .pkg-title {
+        font-size: 0.75rem;
+    }
+    .package-card .pkg-speed {
+        font-size: 1.5rem;
+    }
+    .package-card .pkg-price {
+        font-size: 0.7rem;
+    }
+    .package-card .pkg-desc {
+        font-size: 0.65rem;
+    }
+
+    .status-grid,
+    .logout-grid,
+    .advert-grid {
+        gap: 0.6rem;
+    }
+    .status-card-item,
+    .logout-card-item,
+    .advert-card-item {
+        padding: 0.8rem 0.4rem;
+        min-height: 100px;
+    }
+    .status-card-icon .svg-icon-lg,
+    .logout-card-icon .svg-icon-lg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+    .status-card-label,
+    .logout-card-label {
+        font-size: 0.7rem;
+    }
+    .status-card-value,
+    .logout-card-value {
+        font-size: 0.85rem;
+    }
+    .advert-card-item {
+        min-height: 110px;
+    }
+
+    .faq-container {
+        padding: 1.5rem 1.2rem;
+    }
+    .faq-question {
+        font-size: 0.85rem;
+        padding: 0.9rem 1rem;
+    }
+
+    /* Opsional: penyesuaian iklan/spinner jika ada */
+    .advert-spinner {
+        width: 40px;
+        height: 40px;
+        border-width: 4px;
+    }
+    .advert-countdown {
+        font-size: 1.5rem;
+    }
+    .svg-icon-lg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+}

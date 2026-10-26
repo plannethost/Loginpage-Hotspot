@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PLANNET | Login</title>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-default example6 navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed tombol-nav" data-toggle="collapse" data-target="#navbar6">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand text-hide" href="login.html">Brand Text</a>
+</div>
+<div id="navbar6" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right ">
+<li><a href="login.html" class="link-aktif">Home</a></li><li><a href="voucher.html" class="tanpa-link">Beli Voucher</a></li>
+<li><a href="rumah.html" class="tanpa-link">Internet Rumah</a></li>
+<li class="dropdown">
+<a class="dropdown-toggle dodown" data-toggle="dropdown" href="#">Bantuan
+<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="aktivasi.html" class="tanpa-link">Cara Aktivasi</a></li>
+<li><a href="faq.html" class="tanpa-link">FAQ</a></li>
+</ul>
+</li>
+<li><a href="layanan.html" class="tanpa-link">Tentang Kami</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container">
+<div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2 box-utama">
+<div class="row">
+<div class="col-md-4 col-sm-12" style="padding:15px;">
+<div style="text-align: center;">
+  <img src="img/log.png" height="auto" width="250px" style="margin-bottom:15px;">
+</div>
+
+<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+<a href="#" class="btn tombol-49 merah" role="button" id="btnvcr" onclick="voucher()"><span class="glyphicon glyphicon-globe"></span>&nbsp; VOUCHER</a>
+<a href="#" class="btn tombol-49 merah" role="button" id="btnmem" onclick="member()"><span class="glyphicon glyphicon-user"></span>&nbsp; MEMBER</a>
+
+</div>
+<p class="bawah-logo">Silahkan login menggunakan voucher yang anda miliki</p>
+$(if error) 
+<div style="color:#DF1A23; font-weight:bold; margin-bottom:5px;" class="besar"> 
+<script type="text/javascript">var error="$(error)"; var error1="user $(username) has reached uptime limit"; var error2="invalid password"; var error3="no valid profile found"; var error4="user &lt;$(username)&gt; not found"; var error5="no more sessions are allowed for user $(username)"; var error6="session limit reached ($(error-orig))"; var error7="web browser did not send challenge response (try again, enable JavaScript)"; var error8="invalid username or password"; var error9="user $(username) is not allowed to log in from this MAC address"; var error10="simultaneous session limit reached"; var error11="user $(username) has reached traffic limit"; var error12="uptime limit reached"; var error13="invalid Calling-Station-Id"; if (error==error1){window.location.href="expired.html";}else if (error==error2){window.location.href="exinvalid.html";}else if (error==error3){window.location.href="exnotfound.html";}else if (error==error4){window.location.href="exnotfound.html";}else if (error==error5){window.location.href="exterpakai.html";}else if (error==error6){window.location.href="exterpakai.html";}else if (error==error7){window.location.href="exbrowser.html";}else if (error==error8){window.location.href="exinvalid.html";}else if (error==error9){window.location.href="exmac.html";}else if (error==error10){window.location.href="exterpakai.html";}else if (error==error11){window.location.href="exkuota.html";}else if (error==error12){window.location.href="expired.html";}else if (error==error13){window.location.href="excalling.html";}else{document.write("$(error)");}</script> 
+</div>
+$(endif)
+
+<form autocomplete="off" name="login" action="$(link-login-only)" method="post" 
+$(if chap-id) onSubmit="return doLogin()" $(endif)>
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+<input class="form-control kolom-inputdsuser" type="text" name="username" placeholder="KODE VOUCHER" required>
+<input class="form-control kolom-inputdspass" type="hidden" name="password" placeholder="PASSWORD" required>
+<button class="btn tombol-49 birumuda" type="submit"><span class="glyphicon glyphicon-log-in"></span>&nbsp; LOGIN</button>
+$(if trial == 'yes')
+<a type="button" class="btn  tombol-49 navy" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"><span class="glyphicon glyphicon-leaf"></span>&nbsp; FREE 10 MENIT</a>
+$(else)
+<!--Tombol FREE habis-->
+<button type="button" class="btn  tombol-49 btn-warning disabled" data-toggle="modal" data-target="#myModal11"><span class="glyphicon glyphicon-ban-circle"></span>&nbsp; FREE HABIS</button>
+<!-- Start Modal Free Habis -->
+<div id="myModal11" class="modal fade mt--4" tabindex="-1" role="dialog">
+  <div class="modal-dialog d-flex justify-content-center align-items-center">
+    <div class="modal-content" style="border-radius: 4px; text-align: center;">
+      <div class="modal-body">
+        <h3><b>Gratis Habis</b></h3>
+        <p>Maaf, akses internet gratis untuk perangkat Anda hari ini sudah habis.</p>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">
+        <b><span class="glyphicon glyphicon-remove"></span> TUTUP</b>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Start Modal Free Habis -->
+$(endif)	
+</form>	
+
+
+<div class="sedang">
+<span>Perhatikan Penulisan Huruf Besar Dan Kecil</span>
+</div>
+
+<hr style="margin-bottom:1px; margin-top:10px;">
+<div class="sedang">
+<script src="js/jquery.js" type="text/javascript"></script>
+<script type="1dd2f560a8359fd2a4df3e74-text/javascript">
+     $('.carousel').carousel({
+         interval: 5000
+       })
+     </script>
+<div id="carousel-example-generic1" class="carousel slide" data-ride="carousel" data-interval="3000">
+<ol class="carousel-indicators">
+<li data-target="#carousel-example-generic1" data-slide-to="0" class="active" style="background:transparent; border:none;"></li>
+<li data-target="#carousel-example-generic1" data-slide-to="1" style="background:transparent; border:none;"></li>
+<li data-target="#carousel-example-generic1" data-slide-to="2" style="background:transparent; border:none;"></li>
+</ol>
+<div class="carousel-inner">
+<div class="item active">
+<b><span >Layanan Internet WiFi</span>
+<span class="tx-merah">Mulai Rp.2.000</span>
+<br>
+<span class="tx-merah">Aktif 3 JAM</span><span>
+  Internetan Sepuasnya
+</span>
+ </b>
+</div>
+<div class="item">
+  <b>
+    <span>Beli e-Voucher Instan & Praktis<br> Untuk Mulai</span>
+    <a href="voucher.html">KLIK DI SINI</a>
+  </b>
+</div>
+<div class="item ">
+<b><span>Paket Internet Rumah<br> 
+  Berlangganan</span> <a href="rumah.html">KLIK DI SINI </a>
+</b>
+</div>
+</div>
+</div> 
+</div>
+<hr style="margin-top:3px; margin-bottom:5px;">
+</div>
+<div class="col-md-8 col-sm-12">
+  <img src="img/gambar1.png" alt="PlannetBanner" class="img-responsive" style="max-width:100%; height:auto;">
+</div>
+<div class="sedang-faq">
+  
+<marquee scrollamount="3" style="background-color: #ff4c4c;margin-bottom: -4px;">
+<span style="color: #fff;">Kami menyediakan berbagai macam pilihan Paket Internet Murah yang bisa anda pilih
+sesuai dengan
+kebutuhan, untuk melakukan pembelian Voucher WiFi
+silahkan hubungi kami.
+Pembelian Voucher dan Info Lainnya bisa hubungi kontak layanan kami</span>
+</marquee>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p id="container" class="center"></p>
+
+$(if chap-id)
+		<form name="sendin" action="$(link-login-only)" method="post">
+			<input type="hidden" name="username" />
+			<input type="hidden" name="password" />
+			<input type="hidden" name="dst" value="$(link-orig)" />
+			<input type="hidden" name="popup" value="true" />
+		</form>
+		<script type="text/javascript" src="md5.js"></script>
+		<script type="text/javascript">
+		<!--
+			function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+			}
+		//-->
+		</script>
+		$(endif)
+
+<script language="JavaScript">
+	$(function() {
+    $('#oteote').keyup(function() {
+    this.value = this.value.toLocaleUpperCase();
+    });
+	});
+	</script>
+
+<script type="text/javascript">
+
+    var username = document.login.username;
+    var password = document.login.password;
+    var luser = document.getElementById("luser");
+    var lpass = document.getElementById("lpass");
+    var btnmem = document.getElementById("btnmem");
+    var btnvcr = document.getElementById("btnvcr");
+
+    // set password = username
+    function setpass() {
+      var user = username.value
+      password.value = user;
+    }
+
+    username.onkeyup = setpass;
+
+
+    // change to voucher mode
+    function voucher() {
+      username.focus();
+      username.onkeyup = setpass;
+      username.placeholder = "KODE VOUCHER";
+      password.type = "hidden";
+      password.value = username.value;
+    }
+
+    // change to member mode
+    function member() {
+      username.focus();
+      username.onkeyup = "";
+      username.placeholder = "USERNAME";
+      password.type = "PASSWORD";
+      password.value = "";
+
+    }
+
+    //-->
+  </script>
+<script src="js/assets/modulbottom.js" type="text/javascript"></script>
+
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/modal.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>Plannet - Log out</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="assets/css/style.css" rel="stylesheet">
+  
+    <script>
+        function openLogin() {
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">PLANNET</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+         <img src="assets/svg/border-width.svg" class="svg-icon" alt="menu">
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link" href="login.html">Home</a></li>
+            <li><a class="nav-link " href="#">Status</a></li>
+            <li><a class="nav-link" href="help.html">Bantuan</a></li>
+            <li><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="logout-wrapper">
+        <div class="logout-header">
+            <h1>Anda telah keluar!</h1>
+            <p>Terima kasih telah menggunakan Plannet Hotspot</p>
+        </div>
+
+        <div class="logout-grid">
+            <!-- Username -->
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                   <img src="assets/svg/person.svg" class="svg-icon-lg" alt="User Icon">
+                </div>
+                <div class="logout-card-label">Username</div>
+                <div class="logout-card-value">$(username)</div>
+            </div>
+
+            <!-- IP Address -->
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                    <img src="assets/svg/status/eth.svg" class="svg-icon-lg" alt="IP Address Icon">
+                </div>
+                <div class="logout-card-label">Alamat IP</div>
+                <div class="logout-card-value">$(ip)</div>
+            </div>
+
+            <!-- MAC Address -->
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                    <img src="assets/svg/status/phone.svg" class="svg-icon-lg" alt="MAC Address Icon">
+                </div>
+                <div class="logout-card-label">MAC Address</div>
+                <div class="logout-card-value">$(mac)</div>
+            </div>
+
+            <!-- Session Time -->
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                    <img src="assets/svg/status/clock-history.svg" class="svg-icon-lg" alt="Session Time Icon">
+                </div>
+                <div class="logout-card-label">Lama Terhubung</div>
+                <div class="logout-card-value">$(uptime)</div>
+            </div>
+
+            <!-- Time Left (jika ada) -->
+            $(if session-time-left)
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                   <img src="assets/svg/status/uptime.svg" class="svg-icon-lg" alt="Time Left Icon">
+                </div>
+                <div class="logout-card-label">Sisa Waktu</div>
+                <div class="logout-card-value">$(session-time-left)</div>
+            </div>
+            $(endif)
+
+            <!-- Bytes Up / Down -->
+            <div class="logout-card-item">
+                <div class="logout-card-icon">
+                    <img src="assets/svg/status/arrow-clockwise.svg" class="svg-icon-lg" alt="Refresh Icon">
+                </div>
+                <div class="logout-card-label">Data Terpakai</div>
+                <div class="logout-card-value">
+                    <span>↑ $(bytes-out-nice)</span> | 
+                    <span>↓ $(bytes-in-nice)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="logout-action">
+            <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                <button type="submit" class="btn-login">
+                    <img src="assets/svg/login.svg" class="svg-icon" alt="login">
+                    Log In
+                </button>
+            </form>
+        </div>
+    </div>
+<div class="footer-text">
+    PLANNET · &copy; <span id="current-year"></span>
+</div>
+<script src="assets/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plannet - Log In</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">PLANNET</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+         <img src="assets/svg/border-width.svg" class="svg-icon" alt="menu">
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link active" href="#">Home</a></li>
+            <li><a class="nav-link" href="help.html">Bantuan</a></li>
+            <li><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="login-card" id="loginCard">
+            <div class="card-header">
+                <h1>Masuk ke jaringan</h1>
+                <h2>Plannet Hotspot</h2>
+            </div>
+
+            <ul class="tab-nav" id="tabNav">
+                <li class="tab-item active" data-tab="voucher">
+                    <img src="assets/svg/voucher.svg" class="svg-icon" alt="voucher">
+                    Voucher
+                </li>
+                <li class="tab-item" data-tab="user">
+                    <img src="assets/svg/person.svg" class="svg-icon" alt="member">
+                    Member
+                </li>
+            </ul>
+
+            <div class="form-body">
+                <div class="alert-custom alert-info" id="infoAlert">
+                    <img src="assets/svg/warning.svg" class="svg-icon" alt="info">
+                    <span>Silakan masuk menggunakan voucher atau akun member anda</span>
+                </div>
+                $(if error)
+                 <div class="alert-custom alert-danger" id="errorAlert">
+                     <img src="assets/svg/danger.svg" class="svg-icon" alt="error">
+                     <span id="msg">$(error)</span>
+                 </div>
+             
+                 <script>
+                     const msg = document.getElementById("msg");
+                     const text = msg.innerText.toLowerCase();
+
+                     if (text.includes("already logged in")) {
+                         msg.innerText = "Kode Voucher sedang aktif, tunggu beberapa saat atau hubungi admin.";
+                         }
+                     else if (text.includes("not found")) {
+                         msg.innerText = "Kode Voucher tidak ditemukan, periksa kembali.";
+                         }
+                     else if (text.includes("expired")) {  
+
+                         msg.innerText = "Kode Voucher telah kadaluarsa.";
+                         }
+                     
+                     else if (text.includes("radius")) {
+                         msg.innerText = "Server tidak merespons, tunggu beberapa saat atau hubungi admin.";
+                         }
+                     </script>
+                     $(endif)
+                 
+                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif) id="loginForm" novalidate>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+
+                    <div id="voucherFields">
+                        <div class="input-group-custom">
+                            <input type="text" name="username" value="$(username)" id="voucherCode" placeholder="Masukkan kode voucher" autocomplete="off" required>
+                            <div class="input-icon">
+                                <img src="assets/svg/voucher.svg" class="svg-icon" alt="voucher">
+                            </div>
+                        </div>
+                        <input type="hidden" name="password" id="voucherPassword">
+                    </div>
+                          <div class="status-text disable">
+                                <span class="status-indicator"></span>Aktif : $(ip)
+                            </div>
+                    <div id="userFields" style="display: none;">
+                        <div class="input-group-custom">
+                            <input type="text" name="username_user" id="userUsername" placeholder="Username" autocomplete="off">
+                            <div class="input-icon">
+                                <img src="assets/svg/person.svg" class="svg-icon" alt="member">
+                            </div>
+                        </div>
+                        <div class="input-group-custom">
+                            <input type="password" name="password_user" id="userPassword" placeholder="Password" autocomplete="off">
+                            <div class="input-icon">
+                                <img src="assets/svg/key.svg" class="svg-icon" alt="key">
+                            </div>
+                            <button type="button" class="toggle-password" id="toggleUserPassword" tabindex="-1">
+                                <img src="assets/svg/eye.svg" class="svg-icon" alt="toggle password visibility">
+                            </button>
+                        </div>
+                        <div class="forget">
+                            <a href="#">Lupa Password?</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-connect" id="submitBtn">
+                        <span id="btnText">Masuk</span>
+                    </button>
+                </form>
+                
+            <div class="link-bottom" id="vcLink">
+                Trial <span class="disable"> (Tidak Tersedia)</span>
+            </div>
+
+            <div class="link-bottom" id="memberLink" style="display: none;">Daftar Membership<a href="#"> Di sini</a>
+            </div>
+        </div>
+     </div>
+
+        <!-- Package cards -->
+        <div class="package-section">
+            <div class="package-card">
+                <div class="pkg-header">
+                    <div class="pkg-icon">
+                        <img src="assets/svg/box.svg" class="svg-icon" alt="box">
+                    </div>
+                    <div class="pkg-title">Essensial</div>
+                </div>
+                <div class="pkg-speed">10<small> Mbps</small></div>
+                <div class="pkg-price">Rp 180K/bln</div>
+                <div class="pkg-desc">Browsing & streaming ringan</div>
+            </div>
+            <div class="package-card no-ribbon">
+                <div class="pkg-header">
+                    <div class="pkg-icon">
+                        <img src="assets/svg/box.svg" class="svg-icon" alt="box">
+                    </div>
+                    <div class="pkg-title">Advanced</div>
+                </div>
+                <div class="pkg-speed">25<small> Mbps</small></div>
+                <div class="pkg-price">Rp 250K/bln</div>
+                <div class="pkg-desc">Keluarga & work from home</div>
+            </div>
+            <div class="package-card no-ribbon">
+                <div class="pkg-header">
+                    <div class="pkg-icon">
+                        <img src="assets/svg/box.svg" class="svg-icon" alt="box">
+                    </div>
+                    <div class="pkg-title">Prestige</div>
+                </div>
+                <div class="pkg-speed">50<small> Mbps</small></div>
+                <div class="pkg-price">Rp 350K/bln</div>
+                <div class="pkg-desc">Gaming & streaming 4K</div>
+            </div>
+        </div>
+    </div>
+
+<div class="footer-text">
+    PLANNET · &copy; <span id="current-year"></span>
+</div>
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

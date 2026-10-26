@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>Internet hotspot - Status</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .content-area {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        .status-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .status-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .status-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(108, 92, 231, 0.15);
+            border-top-color: #6c5ce7;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .status-check {
+            display: none;
+            text-align: center;
+            animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
+        }
+        .status-check.show {
+            display: block;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .status-check .check-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 0.5rem;
+        }
+        .status-check .check-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e1e2f;
+        }
+        .status-content {
+            display: none;
+        }
+        .status-content.visible {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">PLANNET</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+         <img src="assets/svg/border-width.svg" class="svg-icon" alt="menu">
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link" href="login.html">Home</a></li>
+            <li><a class="nav-link active" href="#">Status</a></li>
+            <li><a class="nav-link" href="help.html">Bantuan</a></li>
+            <li><a class="nav-link" href="faq.html">FAQ</a></li>
+            <li><a class="nav-link" href="#">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-area">
+        <div class="status-overlay" id="statusOverlay">
+            <div class="status-spinner" id="statusSpinner"></div>
+            <div class="status-check" id="statusCheck">
+                <img src="assets/svg/status/check.svg" class="check-icon" alt="Check Icon">
+                <div class="check-text">Terhubung!</div>
+            </div>
+        </div>
+
+        <div class="status-content" id="statusContent">
+            <div class="status-wrapper">
+                <div class="status-header">
+                    <h1>Hi, $(username)!</h1>
+                    <p>Informasi penggunaan internet Anda</p>
+                </div>
+
+                <div class="status-grid">
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                            <img src="assets/svg/status/eth.svg" class="svg-icon-lg" alt="IP Address Icon">
+                        </div>
+                        <div class="status-card-label">IP</div>
+                        <div class="status-card-value">$(ip)</div>
+                    </div>
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                            <img src="assets/svg/status/phone.svg" class="svg-icon-lg" alt="IP Address Icon">
+                        </div>
+                        <div class="status-card-label">Mac</div>
+                        <div class="status-card-value">$(mac)</div>
+                    </div>
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                            <img src="assets/svg/status/arrow-up.svg" class="svg-icon-lg" alt="Upload Icon">
+                        </div>
+                        <div class="status-card-label">Data Terkirim</div>
+                        <div class="status-card-value">$(bytes-out-nice)</div>
+                    </div>
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                            <img src="assets/svg/status/arrow-down.svg" class="svg-icon-lg" alt="Download Icon">
+                        </div>
+                        <div class="status-card-label">Data Diterima</div>
+                        <div class="status-card-value">$(bytes-in-nice)</div>
+                    </div>
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                            <img src="assets/svg/status/uptime.svg" class="svg-icon-lg" alt="Uptime Icon">
+                        </div>
+                        <div class="status-card-label">Terhubung</div>
+                        <div class="status-card-value">$(uptime)</div>
+                    </div>
+                   
+                    <div class="status-card-item">
+                        <div class="status-card-icon">
+                        <img src="assets/svg/status/clock-history.svg" class="svg-icon-lg" alt="Session Time Icon">
+                    </div>
+                    <div class="status-card-label">Sisa Waktu</div>
+                        <div class="status-card-value">
+                            $(if session-time-left)
+                            $(session-time-left)
+                                $(else)
+                                Not Supported
+                            $(endif)
+                        </div>
+                    </div>
+                </div>
+
+                $(if login-by-mac != 'yes')
+                <div class="status-logout">
+                    <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                        <button type="submit" class="btn-logout">
+                            <img src="assets/svg/logout.svg" class="svg-icon" alt="Logout Icon">
+                            Log Out
+                        </button>
+                    </form>
+                </div>
+                $(endif)
+            </div>
+        </div>
+    </div>
+
+<div class="footer-text">
+    PLANNET · &copy; <span id="current-year"></span>
+</div>
+
+    <script>
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout',
+                'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+    </script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>FAQ - Plannet Hotspot</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="loading" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">PLANNET</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+         <img src="assets/svg/border-width.svg" class="svg-icon" alt="menu">
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link" href="login.html">Home</a></li>
+            <li><a class="nav-link" href="status.html">Status</a></li>
+            <li><a class="nav-link" href="help.html">Bantuan</a></li>
+            <li><a class="nav-link active" href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="faq-wrapper">
+        <div class="faq-container">
+            <h1 class="faq-title">Pertanyaan Umum</h1>
+            <p class="faq-subtitle">Temukan jawaban dari pertanyaan yang sering diajukan</p>
+
+            <div class="faq-accordion" id="faqAccordion">
+                <!-- Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Bagaimana cara membeli voucher?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Anda dapat membeli voucher melalui admin jaringan, konter terdekat, atau melalui aplikasi pembayaran yang didukung. Setiap voucher memiliki kode unik yang bisa langsung digunakan.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Apakah saya bisa menggunakan satu akun untuk banyak perangkat?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ya, akun member dapat digunakan di beberapa perangkat secara bersamaan, selama tidak melebihi batas kuota atau ketentuan yang berlaku.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Bagaimana jika saya lupa password akun member?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hubungi admin jaringan untuk mereset password Anda. Pastikan Anda memiliki informasi yang cukup untuk verifikasi identitas.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Apakah koneksi aman?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Kami menggunakan enkripsi standar industri untuk melindungi data Anda. Namun, kami tetap menyarankan untuk tidak mengakses informasi sensitif tanpa perlindungan tambahan.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Berapa lama masa aktif voucher?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Masa aktif voucher bervariasi tergantung paket yang dibeli. Detail masa aktif tercantum pada voucher atau dapat ditanyakan ke admin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="footer-text">
+    PLANNET · &copy; <span id="current-year"></span>
+</div>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
