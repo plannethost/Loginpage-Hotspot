@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>Bantuan - PlanNet Hotspot</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .help-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5rem 1.5rem 2rem;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .help-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 22px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(108, 92, 231, 0.1);
+        }
+
+        .help-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e1e2f;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .help-subtitle {
+            text-align: center;
+            color: #5a5a7a;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .help-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(108, 92, 231, 0.1);
+        }
+
+        .help-card-icon {
+            margin-bottom: 0.8rem;
+        }
+
+        .help-card-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .help-card h3 {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1e1e2f;
+            margin-bottom: 0.5rem;
+        }
+
+        .help-card p {
+            font-size: 0.85rem;
+            color: #5a5a7a;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .help-card ul {
+            text-align: left;
+            font-size: 0.85rem;
+            color: #5a5a7a;
+            padding-left: 1.2rem;
+            margin: 0.5rem 0 0;
+            line-height: 1.6;
+        }
+
+        .help-card .btn-help {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .help-card .btn-help:hover {
+            background: linear-gradient(135deg, #5a4bd1 0%, #8c7ae6 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(108, 92, 231, 0.3);
+        }
+
+        @media (max-width: 550px) {
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">PLANNET</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+         <img src="assets/svg/border-width.svg" class="svg-icon" alt="menu">
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a class="nav-link" href="login.html">Home</a></li>
+            <li><a class="nav-link" href="status.html">Status</a></li>
+            <li><a class="nav-link active" href="help.html">Bantuan</a></li>
+            <li><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="help-wrapper">
+        <div class="help-container">
+            <h1 class="help-title">Pusat Bantuan</h1>
+            <p class="help-subtitle">Panduan penggunaan dan solusi masalah umum</p>
+
+            <div class="help-grid">
+                <!-- Card 1: Cara menggunakan voucher -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/voucher.svg" alt="Voucher">
+                    </div>
+                    <h3>Menggunakan Voucher</h3>
+                    <p>Masukkan kode voucher yang Anda beli di kolom "Voucher" pada halaman login, lalu tekan <strong>Masuk</strong>. Kode voucher berlaku untuk satu kali pemakaian sesuai durasi yang tertera.</p>
+                    <a href="login.html" class="btn-help">Ke Halaman Login</a>
+                </div>
+
+                <!-- Card 2: Login sebagai Member -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/person.svg" alt="Member">
+                    </div>
+                    <h3>Login sebagai Member</h3>
+                    <p>Gunakan username dan password yang telah didaftarkan. Jika belum punya akun, hubungi admin untuk mendaftar.</p>
+                    <ul>
+                        <li>Buka tab <strong>Member</strong> di halaman login.</li>
+                        <li>Masukkan username & password.</li>
+                        <li>Klik <strong>Masuk</strong>.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Lupa Password -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/key.svg" alt="Lupa Password">
+                    </div>
+                    <h3>Lupa Password?</h3>
+                    <p>Jika Anda lupa password akun member, segera hubungi admin untuk mereset password Anda. Siapkan data pendukung untuk verifikasi.</p>
+                    <button class="btn-help" onclick="alert('Hubungi admin di nomor 0812-xxxx-xxxx atau email admin@plannet.id')">Kontak Admin</button>
+                </div>
+
+                <!-- Card 4: Masalah Koneksi -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/status/arrow-clockwise.svg" alt="Koneksi">
+                    </div>
+                    <h3>Masalah Koneksi</h3>
+                    <p>Jika internet tidak berfungsi setelah login, coba langkah berikut:</p>
+                    <ul>
+                        <li>Restart perangkat Anda.</li>
+                        <li>Lupakan jaringan WiFi lalu sambungkan kembali.</li>
+                        <li>Bersihkan cache browser.</li>
+                        <li>Jika masih bermasalah, hubungi admin.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Informasi Kuota & Durasi -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/status/clock-history.svg" alt="Kuota">
+                    </div>
+                    <h3>Kuota & Durasi</h3>
+                    <p>Cek sisa kuota dan waktu Anda melalui halaman <strong>Status</strong> setelah login. Halaman ini menampilkan pemakaian data, lama koneksi, dan sisa waktu aktif.</p>
+                    <a href="status.html" class="btn-help">Cek Status</a>
+                </div>
+
+                <!-- Card 6: Kontak Admin -->
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <img src="assets/svg/help.svg" alt="Kontak">
+                    </div>
+                    <h3>Hubungi Kami</h3>
+                    <p>Jika Anda memerlukan bantuan lebih lanjut, jangan ragu untuk menghubungi tim dukungan kami.</p>
+                    <p style="margin-top:0.5rem;">
+                        <strong>Telp:</strong> 0838-3838-2848<br>
+                        <strong>Email:</strong> support@planetsrv.net
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="footer-text">
+    PLANNET · &copy; <span id="current-year"></span>
+</div>
+<script src="assets/js/script.js"></script>
+</body>
+</html>

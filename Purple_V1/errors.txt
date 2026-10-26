@@ -1,0 +1,35 @@
+# ==========================================================
+# MikroTik Hotspot Error Messages (Bahasa Indonesia)
+# ==========================================================
+
+internal-error = Terjadi kesalahan internal. ($(error-orig))
+
+config-error = Terjadi kesalahan konfigurasi pada layanan hotspot. ($(error-orig))
+
+not-logged-in = Anda belum melakukan login. (IP: $(ip))
+
+ippool-empty = Tidak dapat memberikan alamat IP karena seluruh IP pada pool sedang digunakan.
+
+shutting-down = Layanan hotspot sedang dimatikan. Silakan coba beberapa saat lagi.
+
+user-session-limit = Jumlah perangkat yang diizinkan untuk akun "$(username)" telah mencapai batas maksimum.
+
+license-session-limit = Jumlah pengguna hotspot aktif telah mencapai batas lisensi.
+
+wrong-mac-username = Username "$(username)" berupa alamat MAC, tetapi tidak sesuai dengan alamat MAC perangkat ini.
+
+chap-missing = Proses autentikasi CHAP gagal. Pastikan JavaScript aktif lalu coba login kembali.
+
+invalid-username = Username atau password yang Anda masukkan salah.
+
+invalid-mac = Akun "$(username)" tidak diizinkan digunakan pada perangkat ini.
+
+uptime-limit = Waktu penggunaan untuk akun "$(username)" telah habis.
+
+traffic-limit = Kuota data untuk akun "$(username)" telah habis.
+
+radius-timeout = Server autentikasi RADIUS tidak memberikan respons.
+
+auth-in-progress = Proses autentikasi masih berlangsung. Silakan tunggu beberapa saat.
+
+radius-reply = $(error-orig)

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Logout</title>
+  <link rel="icon" href="img/favicon.ico">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script>
+    function openLogin() {
+      if (window.name != 'hotspot_logout') return true;
+      open('$(link-login)', '_blank', '');
+      window.close();
+      return false;
+    }
+  </script>
+</head>
+
+<body $(if advert-pending=='yes' ) onload="openAdvert()" $(endif) background="img/bg.jpg">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar6">
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand text-hide" href="login.html">Brand</a>
+      </div>
+      <div id="navbar6" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          $(if login-by)
+          <li><a href="status.html">Status</a></li>
+          $(else)
+          <li><a href="login.html">Login</a></li>
+          $(endif)
+          <li><a href="voucher.html">Beli Voucher</a></li>
+          <li><a href="rumah.html">Home Internet</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bantuan <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="aktivasi.html">Cara Aktivasi</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li><a href="layanan.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top:60px">
+    <div class="box-utama row">
+      <div class="col-md-4 text-center">
+        <b>LOGOUT BERHASIL</b>
+        <p class="sedang-faq">Anda sudah terputus dari internet</p>
+
+        <div class="row">
+          <div class="col-xs-4"><img src="img/mobile/id.png" width="30"><p><small>ID<br>$(username)</small></p></div>
+          <div class="col-xs-4"><img src="img/mobile/ma.png" width="30">
+            $(if session-time-left)
+            <p><small>Sisa<br>$(session-time-left)</small></p>
+            $(else)<p><small>Sisa<br>No Limit</small></p>$(endif)
+          </div>
+          <div class="col-xs-4"><img src="img/mobile/time.png" width="30"><p><small>Online<br>$(uptime)</small></p></div>
+          <div class="col-xs-4"><img src="img/mobile/download.png" width="30"><p><small>Download<br>$(bytes-out-nice)</small></p></div>
+          <div class="col-xs-4"><img src="img/mobile/upload.png" width="30"><p><small>Upload<br>$(bytes-in-nice)</small></p></div>
+          <div class="col-xs-4"><img src="img/mobile/kuota.png" width="30">
+            $(if remain-bytes-total)
+            <p><small>Kuota<br>$(remain-bytes-total-nice)</small></p>
+            $(else)<p><small>Kuota<br>Unlimited</small></p>$(endif)
+          </div>
+        </div>
+
+        <p class="sedang-faq">Gunakan kembali voucher anda<br>klik tombol <b>login</b> di bawah ini</p>
+        <form action="$(link-login)" onsubmit="return openLogin()">
+          $(if login-by-mac != 'yes')
+          <button class="btn btn-primary" style="margin-bottom: 40px;"><span class="glyphicon glyphicon-exclamation-sign"></span> LOGIN</button>
+          $(endif)
+        </form>
+      </div>
+
+      <div  class="col-md-8 col-sm-12">
+  <img src="img/gambar1.png" alt="PlannetBanner" class="img-responsive" style="max-width:100%; height:auto;">
+</div>
+      <marquee scrollamount="3" style="background:#ff4c4c; color:#fff;">
+        Kami menyediakan berbagai macam Paket Internet Murah. Pembelian Voucher & Info hubungi kontak layanan kami.
+      </marquee>
+    </div>
+
+  </div>
+
+  <p id="container" class="center"></p>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/assets/modulbottom.js"></script>
+</body>
+</html>

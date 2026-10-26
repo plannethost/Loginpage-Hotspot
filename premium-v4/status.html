@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  $(if refresh-timeout)
+  <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+  $(endif)
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="-1" />
+  <title>Status</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+
+  <script type="text/javascript">
+    var advertPending = '$(advert-pending)';
+    var linkAdvert = '$(link-advert)';
+    var linkLogout = '$(link-logout)';
+
+    if (advertPending === 'yes') {
+      var popup = '';
+
+      function focusAdvert() {
+        if (window.focus && popup) popup.focus();
+      }
+
+      function openAdvert() {
+        popup = window.open(linkAdvert, 'hotspot_advert', '');
+        setTimeout(focusAdvert, 10000);
+      }
+
+      window.onload = openAdvert;
+    }
+
+    function openLogout() {
+      if (window.name !== 'hotspot_status') return true;
+      window.open(
+        linkLogout,
+        'hotspot_logout',
+        'toolbar=0,location=0,directories=0,status=0,menubar=0,resizable=1,width=280,height=250'
+      );
+      window.close();
+      return false;
+    }
+
+    function readablizeBytes(bytes) {
+      if (bytes === 0) return '0 bytes';
+
+      var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+      var e = Math.floor(Math.log(bytes) / Math.log(1024));
+      return (bytes / Math.pow(1024, e)).toFixed(2) + ' ' + s[e];
+    }
+  </script>
+</head>
+
+<body
+  $(if advert-pending=='yes')
+  onload="openAdvert()"
+  $(endif)
+>
+  <nav class="navbar navbar-default example6 navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed tombol-nav"
+          data-toggle="collapse"
+          data-target="#navbar6"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand text-hide" href="login.html">Brand Text</a>
+      </div>
+      <div id="navbar6" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          $(if login-by)
+          <li><a href="status.html">Status</a></li>
+          $(else)
+          <li><a href="login.html">Login</a></li>
+          $(endif)
+          <li><a href="voucher.html" class="tanpa-link">Beli Voucher</a></li>
+          <li><a href="rumah.html" class="tanpa-link">Home Internet</a></li>
+          <li class="dropdown">
+            <a
+              class="dropdown-toggle dodown"
+              data-toggle="dropdown"
+              href="#"
+              >Bantuan <span class="caret"></span></a
+            >
+            <ul class="dropdown-menu">
+              <li><a href="aktivasi.html" class="tanpa-link">Cara Aktivasi</a></li>
+              <li><a href="faq.html" class="tanpa-link">FAQ</a></li>
+            </ul>
+          </li>
+          <li><a href="layanan.html" class="tanpa-link">Tentang Kami</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 box-utama">
+      <div class="row">
+        <div class="col-md-4 col-sm-12" style="padding: 10px;">
+          <p style="text-align: center;"><b>LOGIN BERHASIL</b></p>
+          <p class="sedang-faq" style="margin-top: -10px; text-align: center;">
+            Anda sudah berhasil terhubung internet
+          </p>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/id.png" width="30" alt="ID Member" />
+            </button>
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>ID Member<br />$(username)</small>
+            </p>
+          </div>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/ma.png" width="30" alt="Sisa Waktu" />
+            </button>
+            $(if session-time-left)
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Sisa Waktu $(session-time-left)</small>
+            </p>
+            $(else)
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Sisa Waktu<br />No Limit</small>
+            </p>
+            $(endif)
+          </div>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/time.png" width="30" alt="Online" />
+            </button>
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Online <br />$(uptime)</small>
+            </p>
+          </div>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/download.png" width="30" alt="Download" />
+            </button>
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Download<br />$(bytes-out-nice)</small>
+            </p>
+          </div>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/upload.png" width="30" alt="Upload" />
+            </button>
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Upload<br />$(bytes-in-nice)</small>
+            </p>
+          </div>
+
+          <div class="col-xs-4 text-center">
+            <button
+              class="btn"
+              style="border-radius: 55px; padding: 5px; background-color: transparent;"
+            >
+              <img src="img/mobile/kuota.png" width="30" alt="Sisa Kuota" />
+            </button>
+            $(if remain-bytes-total)
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Sisa Kuota <br />$(remain-bytes-total-nice)</small>
+            </p>
+            $(else)
+            <p style="font-size: 13px; line-height: 1.2;">
+              <small>Sisa Kuota<br />Unlimited</small>
+            </p>
+            $(endif)
+          </div>
+
+          <br /><br />
+
+          <p class="sedang-faq" style="text-align: center;">
+            Periksa selalu masa aktif anda agar tetap terhubung<br />
+            dengan layanan internet kami
+          </p>
+
+          <form action="$(link-logout)" name="logout" onsubmit="return openLogout()">
+            $(if login-by-mac != 'yes')
+            <a href="https://client.planetmn.com/e-voucher">
+              <button type="button" class="btn tombol-49 navy">
+                <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Beli Voucher
+              </button>
+            </a>
+            <button type="submit" class="btn tombol-49 merah">
+              <span class="glyphicon glyphicon-off"></span>&nbsp;LOGOUT
+            </button>
+            $(endif)
+          </form>
+        </div>
+
+        <div  class="col-md-8 col-sm-12">
+          <img
+            src="img/gambar1.png"
+            alt="PlannetBanner"
+            class="img-responsive"
+            style="max-width: 100%; height: auto;"
+          />
+        </div>
+
+        <div class="sedang-faq">
+          <marquee scrollamount="3" style="background-color: #ff4c4c; margin-bottom: -4px;">
+            <span style="color: #fff;">
+              Kami menyediakan berbagai macam pilihan Paket Internet Murah yang bisa anda pilih
+              sesuai dengan kebutuhan, untuk melakukan pembelian Voucher WiFi silahkan hubungi kami.
+              Pembelian Voucher dan Info Lainnya bisa hubungi kontak layanan kami
+            </span>
+          </marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p id="container" class="center"></p>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/assets/modulbottom.js"></script>
+  <script src="js/modal.js"></script>
+</body>
+
+</html>

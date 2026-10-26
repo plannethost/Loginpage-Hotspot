@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<title>e-Voucher | PLANNET</title>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<style>
+  .video-container {
+  position: relative;
+  display: inline-block;
+}
+.play-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: #1147dd9c;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  pointer-events: none; 
+  padding: 10px; 
+  border-radius: 20%; 
+  width: 100px; 
+  height: 60px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+
+        .copy-container {
+            margin: 20px;
+            max-width: 600px;
+        }
+        
+        .text-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            min-height: 40px;
+        }
+        
+        .copy-notification {
+            color: #008104;
+            font-size: 14px;
+            margin-left: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body> 
+
+<nav class="navbar navbar-default example6 navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed tombol-nav" data-toggle="collapse" data-target="#navbar6">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand text-hide" href="login.html">Brand Text
+</a>
+</div>
+<div id="navbar6" class="navbar-collapse collapse">
+  <ul class="nav navbar-nav navbar-right ">$(if login-by)
+    <li> <a href="status.html">Status</a><li>$(else)
+    <li> <a href="login.html">Login</a><li>$(endif)
+<li><a href="voucher.html" class="link-aktif">Beli Voucher</a></li>
+<li><a href="rumah.html" class="tanpa-link">Home Internet</a></li>
+
+<li class="dropdown">
+<a class="dropdown-toggle dodown tanpa-link" data-toggle="dropdown" href="#">Bantuan
+<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="aktivasi.html" class="tanpa-link">Cara Aktivasi</a></li>
+<li><a href="faq.html" class="tanpa-link">FAQ</a></li>
+</ul>
+</li>
+<li><a href="layanan.html" target="_blank" class="tanpa-link">Tentang Kami</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container">
+  <div id="myModal11" class="modal fade mt--4" tabindex="-1" role="dialog">
+    <div class="modal-dialog d-flex justify-content-center align-items-center">
+      <div class="modal-content" style="border-radius: 4px; text-align: center;">
+        <div class="modal-body">
+          <h3 style="margin-top: -7px; color: #d49c00;"><b>INFORMASI</b></h3>
+          <hr style="margin-top: -7px;">
+          <p style="text-align: left;">Untuk Pengalaman pengguna di sarankan menggunakan Chrome atau Browser kesayangan anda.</p>
+              <p style="text-align:left; font-weight: 600;">Link :
+    <span style="color:#0270df;font-family:monospace; user-select:all;" onclick="copyToClipboard()">
+                https://client.planetmn.com/e-voucher
+              </span></p> 
+              <script>
+              function copyToClipboard() {
+                const text = "https://client.planetmn.com/e-voucher";
+                navigator.clipboard.writeText(text);
+              }
+              </script>             
+         <img src="img/images/link_https.jpg" class="img-responsive" /><br>
+        </div>
+      </div>
+      <br>
+    
+    </div>
+  </div>
+ 
+
+
+    <div id="myModal12" class="modal fade mt--4" tabindex="-1" role="dialog">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+          <div class="modal-content" style="border-radius: 4px; text-align: center;">
+            <div class="modal-body" >
+              <h3 style="margin-top: -7px; color: #d49c00;"><b>Tutorial</b></h3>
+              <hr style="margin-top: -7px;">
+            </div>
+          </div>
+          <br>
+          <div style="text-align: center;">
+            <button type="button" class="btn btn-navy" data-dismiss="modal">
+              <b><span class="
+                glyphicon glyphicon-share-alt"></span> Oke</b>
+            </button>
+          </div>
+        </div>
+      </div>
+
+<div id="voucherContainer"></div>
+     
+</div>
+<p id="container" class="center"></p>
+<script type="text/javascript" src="js/assets/modulbottom.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="b3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/eVoucher.js"></script>
+</body>
+</html>
