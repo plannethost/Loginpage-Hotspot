@@ -3,28 +3,31 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="expires" content="-1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Internet hotspot - Log in</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#04070f">
+    <title>Network Access — Log in</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
-    <!-- two other colors
-
-<body class="lite">
-<body class="dark">
-
--->
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-scan"></div>
 
     $(if chap-id)
     <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
-        <input type="hidden" name="username" />
-        <input type="hidden" name="password" />
-        <input type="hidden" name="dst" value="$(link-orig)" />
-        <input type="hidden" name="popup" value="true" />
+        <input type="hidden" name="username">
+        <input type="hidden" name="password">
+        <input type="hidden" name="dst" value="$(link-orig)">
+        <input type="hidden" name="popup" value="true">
     </form>
 
     <script src="/md5.js"></script>
@@ -35,45 +38,163 @@
             document.sendin.submit();
             return false;
         }
-
     </script>
     $(endif)
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap animated fadeIn">
-                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
-                    <input type="hidden" name="dst" value="$(link-orig)" />
-                    <input type="hidden" name="popup" value="true" />
-                    <svg class="logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 42">
-                        <path fill="#fff" d="M7.32 13.66L0 41.74 3.12 41.74 9.49 15.94 9.58 15.94 15.01 41.74 18.22 41.74 36.86 16.34 36.95 16.34 30.02 41.74 33.18 41.74 40.4 13.66 35.73 13.66 17.23 38.87 11.99 13.66 7.32 13.66zM43.43 21.45L38.19 41.74 41.16 41.74 46.4 21.45 43.43 21.45zM50.68 21.45L45.5 41.74 48.47 41.74 50.36 34.39 55.55 30.77 62.02 41.74 65.27 41.74 57.91 29.28 69.43 21.45 65.46 21.45 51.21 31.36 51.12 31.28 53.66 21.45 50.68 21.45z" />
-                        <path d="M71.18 21.45L65.94 41.74h3l2.74-10.62c1-3.81 3.82-7.39 9.16-7.47.56 0 1.13 0 1.7 0l.66-2.48c-.52 0-1.09 0-1.61 0-4.34 0-6.94 2-8.82 5h-.1l1.23-4.68zM103.8 28.8c0-5-4-7.94-9.63-7.94-8.69 0-13.59 6.37-13.59 13 0 5.07 3.44 8.45 9.72 8.45 9 0 13.5-6.68 13.5-13.53m-3 .52c0 4.72-3.44 10.93-9.95 10.93-5 0-7.32-2.68-7.32-6.61 0-4.76 3.59-10.7 10.1-10.7 4.77 0 7.17 2.6 7.17 6.38M132.33 21.43L134.26 13.66 105.19 13.66 103.27 21.45 112.59 21.45 112.59 21.45 122.99 21.45 122.99 21.45 132.33 21.43zM111.67 25.17L107.55 41.74 117.93 41.74 122.06 25.17 122.06 25.16 111.67 25.16 111.67 25.17zM134 25.17l-4.11 16.57h9.35l4.1-16.57zm10.28-3.73l1.94-7.78h-9.34l-2 7.79zM150.09 13.66L143.11 41.74 152.45 41.74 153.91 35.92 156.04 34.34 159.34 41.74 169.49 41.74 163.26 29.55 174.26 21.33 163.07 21.33 156.18 27.3 156.09 27.3 159.44 13.66 150.09 13.66zM47.45 0c1.14 7.93 5.39 12.74 14.07 13.14A10.69 10.69 0 0 1 47.45 0" fill="#fff" fill-rule="evenodd" />
-                        <path d="M42.91,1.4c.1,0,.11,0,.12.11A16.55,16.55,0,0,0,48.26,13a16.6,16.6,0,0,0,12,4.66c-10,4-20.55-5.6-17.33-16.28" fill="#fff" fill-rule="evenodd" /></svg>
 
-
-                    <p class="info $(if error)alert$(endif)">
-                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
-                        $(endif)
-
-                        $(if error)$(error)$(endif)
-                    </p>
-                    <label>
-                        <img class="ico" src="img/user.svg" alt="#" />
-                        <input name="username" type="text" value="$(username)" placeholder="Username" />
-                    </label>
-
-                    <label>
-                        <img class="ico" src="img/password.svg" alt="#" />
-                        <input name="password" type="password" placeholder="Password" />
-                    </label>
-
-                    <input type="submit" value="Connect" />
-
-                </form>
-                <p class="info bt">Powered by MikroTik RouterOS</p>
-
+    <main class="shell">
+        <section class="brand">
+            <div class="brand__mark">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="markGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#22d3ee" />
+                            <stop offset=".52" stop-color="#6366f1" />
+                            <stop offset="1" stop-color="#a855f7" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M24 3.6 41.6 13.8v20.4L24 44.4 6.4 34.2V13.8L24 3.6Z" stroke="url(#markGrad)"
+                        stroke-width="1.6" />
+                    <path d="M16.6 28.8a10.4 10.4 0 0 1 14.8 0" stroke="url(#markGrad)" stroke-width="2"
+                        stroke-linecap="round" />
+                    <path d="M20.4 32.6a5.2 5.2 0 0 1 7.2 0" stroke="url(#markGrad)" stroke-width="2"
+                        stroke-linecap="round" />
+                    <circle cx="24" cy="36.6" r="1.6" fill="#22d3ee" />
+                </svg>
+                <span class="brand__name">Nexus<span>Net</span></span>
             </div>
-        </div>
-    </div>
+
+            <p class="eyebrow">Secure gateway</p>
+            <h1>Connect to the<br><em>network backbone</em></h1>
+            <p class="lead">
+                Authenticate with your hotspot account to open an encrypted session on this access point.
+                Every session is logged, rate-limited and monitored for fair usage.
+            </p>
+
+            <ul class="specs">
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3 4 6v6c0 4.4 3.1 8.3 8 9 4.9-.7 8-4.6 8-9V6l-8-3Z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                    WPA2 secured
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" />
+                    </svg>
+                    Low latency
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <ellipse cx="12" cy="5" rx="8" ry="3" />
+                        <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
+                        <path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+                    </svg>
+                    Quota tracked
+                </li>
+            </ul>
+
+            <p class="telemetry">
+                <span class="dot"></span>
+                Portal online &middot; node $(hostname)
+            </p>
+        </section>
+        <section class="card">
+            <header class="card__head">
+                <span class="badge">
+                    <span class="dot $(if error)dot--danger$(endif)"></span>
+                    $(if error)Access denied$(else)Awaiting credentials$(endif)
+                </span>
+                <h2 class="card__title">Sign in</h2>
+                <p class="card__sub">
+                    $(if error == "")Sign in with your hotspot account to activate internet access.$(else)Check your
+                    details below and try again.$(endif)
+                </p>
+            </header>
+
+            $(if error)
+            <p class="alert" role="alert">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 8v4" />
+                    <path d="M12 16h.01" />
+                </svg>
+                <span>$(error)</span>
+            </p>
+            $(endif)
+
+            <form name="login" action="$(link-login-only)" method="post"$(if chap-id) onSubmit="return doLogin()"$(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)">
+                <input type="hidden" name="popup" value="true">
+
+                <label class="field" for="username">
+                    <span class="field__label">Username</span>
+                    <span class="field__control">
+                        <input id="username" name="username" type="text" value="$(username)"
+                            placeholder="your-account" autocomplete="username" autocapitalize="none" spellcheck="false"
+                            required>
+                        <svg class="field__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </span>
+                </label>
+
+                <label class="field" for="password">
+                    <span class="field__label">Password</span>
+                    <span class="field__control">
+                        <input id="password" name="password" type="password" placeholder="Enter password"
+                            autocomplete="current-password" required>
+                        <svg class="field__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="4" y="10.5" width="16" height="10.5" rx="2.5" />
+                            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" />
+                        </svg>
+                        <button type="button" class="field__toggle" data-toggle-password aria-label="Show password"
+                            aria-pressed="false">
+                            <svg data-eye viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12S18 18.5 12 18.5 2.5 12 2.5 12Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </button>
+                    </span>
+                </label>
+
+                <button type="submit" class="btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3v9" />
+                        <path d="M18.4 6.6a9 9 0 1 1-12.8 0" />
+                    </svg>
+                    Connect
+                </button>
+            </form>
+
+            $(if trial == 'yes')
+            <p class="hint">No account yet? A free trial is available —
+                <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">start trial session</a>.
+            </p>
+            $(endif)
+
+            <p class="card__foot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="7" rx="2" />
+                    <rect x="3" y="13" width="18" height="7" rx="2" />
+                </svg>
+                Powered by MikroTik RouterOS
+            </p>
+        </section>
+
+    </main>
+
+    <script src="js/ui.js"></script>
 </body>
 
 </html>

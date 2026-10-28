@@ -1,40 +1,87 @@
-<html>
-<head>
-<meta http-equiv="refresh" content="2; url=$(link-orig)">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<title>Internet hotspot - Advertisement</title>
-<link rel="stylesheet" href="css/style.css">
-<script>
+<!doctype html>
+<html lang="en">
 
-    var popup = '';
-    function openOrig() {
-	if (window.focus) popup.focus();
-	location.href = unescape('$(link-orig-esc)');
-    }
-    function openAd() {
-	location.href = unescape('$(link-redirect-esc)');
-    }
-    function openAdvert() {
-	if (window.name != 'hotspot_advert') {
-		popup = open('$(link-redirect)', 'hotspot_advert', '');
-		setTimeout("openOrig()", 1000);
-		return;
-	}
-	setTimeout("openAd()", 1000);
-    }
-</script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="2; url=$(link-orig)">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="theme-color" content="#04070f">
+    <title>Network Access — Advertisement</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        var popup = '';
+
+        function openOrig() {
+            if (window.focus) popup.focus();
+            location.href = unescape('$(link-orig-esc)');
+        }
+
+        function openAd() {
+            location.href = unescape('$(link-redirect-esc)');
+        }
+
+        function openAdvert() {
+            if (window.name != 'hotspot_advert') {
+                popup = open('$(link-redirect)', 'hotspot_advert', '');
+                setTimeout("openOrig()", 1000);
+                return;
+            }
+            setTimeout("openAd()", 1000);
+        }
+    </script>
 </head>
+
 <body onLoad="openAdvert()">
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                <h1>Advertisement</h1>
-                <p class="info">If nothing happens, open <a href="$(link-redirect)" target="hotspot_advert">advertisement</a> manually.</p>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-scan"></div>
+
+    <main class="shell shell--center">
+        <section class="card card--center">
+            <div class="splash">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                    <path d="m10 9.5 5 2.5-5 2.5v-5Z" />
+                </svg>
             </div>
-        </div>
-    </div>
+
+            <span class="badge badge--violet">
+                <span class="dot dot--amber"></span>
+                Sponsor step
+            </span>
+
+            <h1 class="card__title">Preparing your ad</h1>
+            <p class="card__sub">This session includes a short sponsored step. Your page opens automatically.</p>
+
+            <div class="progress" role="progressbar" aria-label="Loading advertisement"></div>
+
+            <p class="hint">
+                If nothing happens, open the
+                <a href="$(link-redirect)" target="hotspot_advert">advertisement</a> manually.
+            </p>
+
+            <p class="card__foot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="7" rx="2" />
+                    <rect x="3" y="13" width="18" height="7" rx="2" />
+                </svg>
+                Powered by MikroTik RouterOS
+            </p>
+        </section>
+    </main>
+
+    <script src="js/ui.js"></script>
 </body>
+
 </html>

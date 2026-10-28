@@ -1,44 +1,111 @@
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<title>Internet hotspot - Log out</title>
-<link rel="stylesheet" href="css/style.css">
-<script>
-    function openLogin() {
-	if (window.name != 'hotspot_logout') return true;
-	open('$(link-login)', '_blank', '');
-	window.close();
-	return false;
-    }
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="theme-color" content="#04070f">
+    <title>Network Access — Logged out</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        function openLogin() {
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+        }
+    </script>
 </head>
 
 <body>
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                <h1>You have just logged out!</h1> 
-                <table>  
-                    <tr><td>Username</td><td>$(username)</td></tr>
-                    <tr><td>IP address</td><td>$(ip)</td></tr>
-                    <tr><td>MAC address</td><td>$(mac)</td></tr>
-                    <tr><td>Session time</td><td>$(uptime)</td></tr>
-                    $(if session-time-left)
-                    <tr><td>Time left</td><td>$(session-time-left)</td></tr>
-                    $(endif)
-                    <tr><td>Bytes up / down:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
-                </table>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-scan"></div>
 
+    <main class="shell shell--narrow">
+        <section class="card">
+            <header class="card__head">
+                <span class="badge badge--violet">
+                    <span class="dot"></span>
+                    Session closed
+                </span>
+                <div class="identity">
+                    <span class="avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <path d="m16 17 5-5-5-5" />
+                            <path d="M21 12H9" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h1 class="identity__name">You have been logged out</h1>
+                        <p class="identity__meta">Session terminated &middot; $(ip)</p>
+                    </div>
+                </div>
+            </header>
 
-                <form action="$(link-login)" name="login" onSubmit="return openLogin()">
-                <input type="submit" value="Log in">
-                </form>
-            </div>
-        </div>
-    </div>
+            <ul class="stats">
+                <li class="stat">
+                    <span class="stat__key">Username</span>
+                    <span class="stat__val">$(username)</span>
+                </li>
+                <li class="stat">
+                    <span class="stat__key">MAC address</span>
+                    <span class="stat__val">$(mac)</span>
+                </li>
+                <li class="stat">
+                    <span class="stat__key">Session time</span>
+                    <span class="stat__val">$(uptime)</span>
+                </li>
+                $(if session-time-left)
+                <li class="stat">
+                    <span class="stat__key">Time left</span>
+                    <span class="stat__val stat__val--grad">$(session-time-left)</span>
+                </li>
+                $(endif)
+                <li class="stat">
+                    <span class="stat__key">Bytes up / down</span>
+                    <span class="stat__val">$(bytes-in-nice) / $(bytes-out-nice)</span>
+                </li>
+                <li class="stat">
+                    <span class="stat__key">IP address</span>
+                    <span class="stat__val">$(ip)</span>
+                </li>
+            </ul>
 
+            <form action="$(link-login)" name="login" onSubmit="return openLogin()" class="actions">
+                <button type="submit" class="btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3v9" />
+                        <path d="M18.4 6.6a9 9 0 1 1-12.8 0" />
+                    </svg>
+                    Log in again
+                </button>
+            </form>
+
+            <p class="card__foot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="7" rx="2" />
+                    <rect x="3" y="13" width="18" height="7" rx="2" />
+                </svg>
+                Powered by MikroTik RouterOS
+            </p>
+        </section>
+    </main>
+
+    <script src="js/ui.js"></script>
 </body>
+
 </html>

@@ -17,11 +17,45 @@ $(if http-header == "Location")$(link-redirect)$(endif)
   </WISPAccessGatewayParam>
 -->
 <head>
-<title>...</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotspot login required</title>
 <meta http-equiv="refresh" content="0; url=$(link-redirect)">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="-1">
+<meta name="theme-color" content="#04070f">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <main class="shell shell--center">
+        <section class="card card--center">
+            <div class="splash">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="4" y="10.5" width="16" height="10.5" rx="2.5" />
+                    <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" />
+                </svg>
+            </div>
+            <span class="badge">
+                <span class="dot"></span>
+                Login required
+            </span>
+            <h1 class="card__title">Opening the login page</h1>
+            <p class="card__sub">This network requires authentication before you can browse.</p>
+            <div class="actions">
+                <a class="btn" href="$(link-login)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m13 6 6 6-6 6" />
+                    </svg>
+                    Go to login
+                </a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

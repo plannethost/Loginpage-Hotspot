@@ -1,71 +1,193 @@
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-$(if refresh-timeout)
-<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
-$(endif)
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="-1">
-<title>Internet hotspot - Status</title>
-<link rel="stylesheet" href="css/style.css">
-<script>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="theme-color" content="#04070f">
+    <title>Network Access — Session status</title>
 
-$(if advert-pending == 'yes')
-    var popup = '';
-    function focusAdvert() {
-	if (window.focus) popup.focus();
-    }
-    function openAdvert() {
-	popup = open('$(link-advert)', 'hotspot_advert', '');
-	setTimeout("focusAdvert()", 1000);
-    }
-$(endif)
-    function openLogout() {
-	if (window.name != 'hotspot_status') return true;
-        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
-	window.close();
-	return false;
-    }
-</script>
-    
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        $(if advert-pending == 'yes')
+        var popup = '';
+        function focusAdvert() {
+            if (window.focus) popup.focus();
+        }
+        function openAdvert() {
+            popup = open('$(link-advert)', 'hotspot_advert', '');
+            setTimeout("focusAdvert()", 1000);
+        }
+        $(endif)
+
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+    </script>
 </head>
-<body $(if advert-pending == 'yes') onLoad="openAdvert()" $(endif)>
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                $(if login-by == 'trial')
-                    <h1>Hi, trial user!</h1>
-                $(elif login-by != 'mac')
-                    <h1>Hi, $(username)!</h1>
-                $(endif)                
 
-                <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
-                    <table>
-                        <tr><td>IP address</td><td>$(ip)</td></tr>
-                        <tr><td>Bytes up / down</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
-                    $(if session-time-left)
-                        <tr><td>Connected / left</td><td>$(uptime) / $(session-time-left)</td></tr>
-                    $(else)
-                        <tr><td>Connected</td><td>$(uptime)</td></tr>
-                    $(endif)
-                    $(if blocked == 'yes')
-                        <tr><td>Status</td><td>
-                    <a href="$(link-advert)" target="hotspot_advert">Advertisement required</a></td>
-                        </tr>
-                    $(elif refresh-timeout)
-                        <tr><td>Status refresh</td><td>$(refresh-timeout)</td></tr>
-                    $(endif)
-                        </table>
-                    $(if login-by-mac != 'yes')
-                    <!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
-                    <button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
-                    <!-- end of user manager link -->
-                    <input type="submit" value="Log out">
-                    $(endif)
-                </form>
+<body $(if advert-pending == 'yes') onLoad="openAdvert()" $(endif)>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-scan"></div>
+
+    <main class="shell shell--narrow">
+        <section class="card">
+            <header class="card__head">
+                <span class="badge">
+                    <span class="dot"></span>
+                    Session active
+                </span>
+                <div class="identity">
+                    <span class="avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </span>
+                    <div>
+                        $(if login-by == 'trial')
+                        <h1 class="identity__name">Trial session</h1>
+                        <p class="identity__meta">Guest access &middot; limited bandwidth</p>
+                        $(elif login-by != 'mac')
+                        <h1 class="identity__name">$(username)</h1>
+                        <p class="identity__meta">Authenticated client &middot; $(ip)</p>
+                        $(else)
+                        <h1 class="identity__name">Device session</h1>
+                        <p class="identity__meta">MAC login &middot; $(ip)</p>
+                        $(endif)
+                    </div>
+                </div>
+            </header>
+
+            <ul class="stats">
+                <li class="stat">
+                    <span class="stat__key">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="16" rx="2" />
+                            <path d="M3 9h18" />
+                        </svg>
+                        IP address
+                    </span>
+                    <span class="stat__val">$(ip)</span>
+                </li>
+                <li class="stat">
+                    <span class="stat__key">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 12h4l3 8 4-16 3 8h4" />
+                        </svg>
+                        Traffic
+                    </span>
+                    <span class="stat__val">$(bytes-in-nice) / $(bytes-out-nice)</span>
+                </li>
+                $(if session-time-left)
+                <li class="stat">
+                    <span class="stat__key">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v5l3 2" />
+                        </svg>
+                        Connected
+                    </span>
+                    <span class="stat__val">$(uptime)</span>
+                </li>
+                <li class="stat">
+                    <span class="stat__key">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 3a9 9 0 1 0 9 9" />
+                            <path d="M12 7v5l4 2" />
+                        </svg>
+                        Time left
+                    </span>
+                    <span class="stat__val stat__val--grad">$(session-time-left)</span>
+                </li>
+                $(else)
+                <li class="stat">
+                    <span class="stat__key">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v5l3 2" />
+                        </svg>
+                        Connected
+                    </span>
+                    <span class="stat__val stat__val--grad">$(uptime)</span>
+                </li>
+                $(endif)
+            </ul>
+
+            $(if blocked == 'yes')
+            <p class="alert" role="alert">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 8v4" />
+                    <path d="M12 16h.01" />
+                </svg>
+                <span>Advertisement required before browsing continues —
+                    <a href="$(link-advert)" target="hotspot_advert">open advertisement</a>.</span>
+            </p>
+            $(elif refresh-timeout)
+            <div class="meter">
+                <div class="meter__head">
+                    <span>Auto refresh</span>
+                    <span>$(refresh-timeout)</span>
+                </div>
+                <div class="meter__track">
+                    <div class="meter__fill"></div>
+                </div>
             </div>
-        </div>
-    </div>
+            $(endif)
+
+
+            <form action="$(link-logout)" name="logout" onSubmit="return openLogout()" class="actions">
+                $(if login-by-mac != 'yes')
+                <button type="submit" class="btn btn--danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3v9" />
+                        <path d="M18.4 6.6a9 9 0 1 1-12.8 0" />
+                    </svg>
+                    End session
+                </button>
+                $(endif)
+                <!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+                <a class="btn btn--ghost" href="http://$(hostname)/user?subs=">Open user portal</a>
+                -->
+            </form>
+
+            <p class="card__foot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="7" rx="2" />
+                    <rect x="3" y="13" width="18" height="7" rx="2" />
+                </svg>
+                Node $(hostname) &middot; MikroTik RouterOS
+            </p>
+
+        </section>
+    </main>
+
+    <script src="js/ui.js"></script>
 </body>
+
 </html>
