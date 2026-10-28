@@ -43,6 +43,23 @@ Loginpage-Hotspot/
 │   ├── js/
 │   ├── img/
 │   └── fonts/
+├── base-templet-default/
+│   ├── README.md
+│   ├── login.html
+│   ├── status.html
+│   ├── logout.html
+│   ├── error.html
+│   ├── alogin.html
+│   ├── radvert.html
+│   ├── redirect.html
+│   ├── rlogin.html
+│   ├── api.json
+│   ├── errors.txt
+│   ├── md5.js
+│   ├── css/
+│   ├── js/
+│   ├── img/
+│   └── xml/
 └── LICENSE
 ```
 
@@ -53,6 +70,9 @@ Versi awal dan sederhana, cocok untuk kebutuhan dasar halaman login hotspot. Mud
 
 ### premium-v4
 Versi yang lebih modern dan lebih lengkap, dengan beberapa halaman pendukung seperti login, status, voucher, layanan, FAQ, dan aktivasi.
+
+### base-templet-default
+Template dasar MikroTik yang sudah dirombak dengan tema teknologi (dark UI, aksen cyan–violet, kartu glassmorphism, ikon inline SVG tanpa emoji). Tipografi memakai Google Fonts CDN, sedangkan CSS/JS inti tetap lokal agar portal tetap tampil saat walled garden memblokir CDN. Detail ada di `base-templet-default/README.md`.
 
 ## Fitur Utama
 

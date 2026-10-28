@@ -1,23 +1,72 @@
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="expires" content="-1">
-    <title>Internet hotspot - Error</title>
+    <meta name="theme-color" content="#04070f">
+    <title>Network Access — Error</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                <h1>Hotspot error: $(error)</h1>
-                <p class="info">Log in page: <a href="$(link-login)">$(link-login)</a></p>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-scan"></div>
+
+    <main class="shell shell--center">
+        <section class="card card--center">
+            <div class="splash splash--danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 8v4" />
+                    <path d="M12 16h.01" />
+                </svg>
             </div>
-        </div>
-    </div>
+
+            <span class="badge badge--danger">
+                <span class="dot dot--danger"></span>
+                Connection error
+            </span>
+
+            <h1 class="card__title">Hotspot error</h1>
+            <p class="card__sub">The gateway could not complete your request. Details below.</p>
+            $(if error)
+            <p class="error-code">$(error)</p>
+            $(endif)
+
+            <div class="actions">
+                <a class="btn" href="$(link-login)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m13 6 6 6-6 6" />
+                    </svg>
+                    Back to login
+                </a>
+            </div>
+
+            <p class="card__foot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="7" rx="2" />
+                    <rect x="3" y="13" width="18" height="7" rx="2" />
+                </svg>
+                Log in page: <span class="mono-link">$(link-login)</span>
+            </p>
+        </section>
+    </main>
+
+    <script src="js/ui.js"></script>
 </body>
 
 </html>
